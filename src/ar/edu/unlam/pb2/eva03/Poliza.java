@@ -6,6 +6,8 @@ public class Poliza implements Comparable<Poliza>{
 	private Double sumaAsegurada;
 	private Double prima;
 	private Double premio;
+	private Boolean fueRobado;
+	private Boolean tuvoAlgunAccidente;
 	public Poliza(Integer numeroDePoliza, Persona asegurado, Double sumaAsegurada, Double prima, Double premio) {
 		super();
 		this.numeroDePoliza = numeroDePoliza;
@@ -13,6 +15,8 @@ public class Poliza implements Comparable<Poliza>{
 		this.sumaAsegurada = sumaAsegurada;
 		this.prima = prima;
 		this.premio = premio;
+		this.fueRobado = fueRobado;
+		this.tuvoAlgunAccidente = tuvoAlgunAccidente;
 	}
 	public Integer getNumeroDePoliza() {
 		return numeroDePoliza;
@@ -73,8 +77,27 @@ public class Poliza implements Comparable<Poliza>{
 		return this.numeroDePoliza.compareTo(o.getNumeroDePoliza());
 	}
 	public boolean fueRobado() {
-		return true;
+		return fueRobado;
 	}
+	public Boolean getFueRobado() {
+		return fueRobado;
+	}
+	public void setFueRobado(Boolean fueRobado) {
+		this.fueRobado = fueRobado;
+	}
+	
+	public Boolean tuvoAlgunAccidente() {
+		return tuvoAlgunAccidente;
+	}
+
+	public Boolean getTuvoAlgunAccidente() {
+		return tuvoAlgunAccidente;
+	}
+
+	public void setTuvoAlgunAccidente(Boolean tuvoAlgunAccidente) {
+		this.tuvoAlgunAccidente = tuvoAlgunAccidente;
+	}
+	
 	
 	
 	

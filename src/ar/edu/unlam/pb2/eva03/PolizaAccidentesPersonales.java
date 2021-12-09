@@ -7,15 +7,14 @@ import java.util.Map;
 public class PolizaAccidentesPersonales extends Poliza implements SegurosDeVida {
 	private Map<Persona, TipoDeBeneficiario> persona;
 	private TipoDeBeneficiario tipoBeneficiario;
+
 	
 	public PolizaAccidentesPersonales(Integer numeroDePoliza, Persona asegurado, Double sumaAsegurada, Double prima, Double premio) {
 		super(numeroDePoliza, asegurado, sumaAsegurada, prima, premio);
 		this.persona = new HashMap<Persona, TipoDeBeneficiario>();
+
 	}
 	
-	public boolean tuvoAlgunAccidente() {
-		return true;
-	}
 
 
 	@Override

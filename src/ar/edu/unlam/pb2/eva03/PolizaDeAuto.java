@@ -12,10 +12,7 @@ public class PolizaDeAuto extends Poliza implements SegurosGenerales {
 		super(numeroPoliza, asegurado, sumaAsegurada, prima, pREMIO);
 		
 	}
-	
-	public boolean fueRobado() {
-		return true;
-	}
+
 
 	@Override
 	public void agregarBienAsegurado(Auto auto) {

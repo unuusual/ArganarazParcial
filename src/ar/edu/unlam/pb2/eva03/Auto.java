@@ -1,11 +1,15 @@
 package ar.edu.unlam.pb2.eva03;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Auto {
 
 	private String marca;
 	private String modelo;
 	private Integer anio;
 	private Double precio;
+	private List<Tren> trenes;
 	
 	public Auto( String marca, String modelo, Integer anio, Double precio) {
 		super();
@@ -13,6 +17,7 @@ public class Auto {
 		this.modelo = modelo;
 		this.anio = anio;
 		this.precio = precio;
+		this.trenes = new ArrayList<Tren>();
 	}
 
 	public String getMarca() {
@@ -47,6 +52,18 @@ public class Auto {
 		this.precio = precio;
 	}
 	
+	public Boolean asignarMaquinistaLibre (Tren tren) throws TrenInexistenteException{
+		Boolean asignado = false;
+		
+		for (Tren i : trenes) {
+			if (!this.trenes.contains(tren)) {
+				asignado = true;
+				trenes.remove(tren);
+			}
+		}
+		
+		throw new TrenInexistenteException();
+	}
 	
 
 }

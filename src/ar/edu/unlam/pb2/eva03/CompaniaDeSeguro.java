@@ -1,7 +1,8 @@
-package ar.edu.unlam.pb2.eva03;
+	package ar.edu.unlam.pb2.eva03;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -11,7 +12,6 @@ public class CompaniaDeSeguro{
 	private String nombre;
 	private Integer numeroPoliza;
 	private Set<Poliza> poliza;
-	private Boolean fueRobado;
 
 	
 
@@ -20,7 +20,6 @@ public class CompaniaDeSeguro{
 		this.nombre = nombre;
 		this.numeroPoliza = numeroPoliza;
 		this.poliza = new TreeSet<Poliza>();
-		this.fueRobado = fueRobado;
 	}
 
 	public String getNombre() {
@@ -37,33 +36,36 @@ public class CompaniaDeSeguro{
 		poliza.add(poliza1);
 	}
 	
-	public void denunciarSiniestro(Integer numero) throws PolizaInexistente{
+	public void denunciarSiniestro(Integer numero) throws PolizaNoExiste{
 		Boolean seEncontro = false;
 		
-		for (Poliza i : poliza) {
-			if (i.getNumeroDePoliza().equals(numero)) {
-				this.fueRobado = true;
-				seEncontro = true;
+		for (Poliza i : poliza) {//recorro la lista de poliza
+			if (i.getNumeroDePoliza().equals(numero)) { //si el numero de poliza que tiene la lisa										//coincide con el numero que le paso por parametro
+				i.setFueRobado(true);
+				i.setTuvoAlgunAccidente(true);
+				seEncontro = true;// y lo encontraron
 			} 
 		}
 		if(!seEncontro){
-			throw new PolizaInexistente();
+			throw new PolizaNoExiste(); 
+			//lanzame la excepcion             //si no lo reconoce, la lista es inexistente
 		}
 			
 		
 	}
 	
 
-	public Integer obtenerLaCantidadDePolizasEmitidas() {
+	public Integer obtenerLaCantidadDePolizasEmitidas() {	
 		return poliza.size();
 	}
 	
 	
-
-	public Poliza getPoliza(int numero) throws PolizaInexistente{
-		for (Poliza i : poliza) {
-			if (i.getNumeroDePoliza().equals(numero)) {
-			return i;	
+//ESTE GET ME VA A TRAER LA POLIZA EN LA POSICION DEL NUMERO Q LE
+	//MANDE POR PARAMETROS
+	public Poliza getPoliza(int numero) throws PolizaNoExiste{ //aca ayudo el profe
+		for (Poliza i : poliza) {//recorro poliza
+			if (i.getNumeroDePoliza().equals(numero)) { //Si el contador es igual al numero que le mande
+			return i;	//entonces devuelve ese contador
 			}
 			
 		}
@@ -85,37 +87,6 @@ public class CompaniaDeSeguro{
 	}
 	
 	
-
-	@Override
-	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result + ((numeroPoliza == null) ? 0 : numeroPoliza.hashCode());
-		result = prime * result + ((poliza == null) ? 0 : poliza.hashCode());
-		return result;
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		CompaniaDeSeguro other = (CompaniaDeSeguro) obj;
-		if (numeroPoliza == null) {
-			if (other.numeroPoliza != null)
-				return false;
-		} else if (!numeroPoliza.equals(other.numeroPoliza))
-			return false;
-		if (poliza == null) {
-			if (other.poliza != null)
-				return false;
-		} else if (!poliza.equals(other.poliza))
-			return false;
-		return true;
-	}
 
 	
 
